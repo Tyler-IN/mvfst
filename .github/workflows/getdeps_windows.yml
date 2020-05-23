@@ -6,6 +6,7 @@ on:
   push:
     branches:
     - master
+    - ci-patch
   pull_request:
     branches:
     - master
@@ -91,6 +92,8 @@ jobs:
       run: python build/fbcode_builder/getdeps.py --allow-system-packages build --no-tests fizz
     - name: Build mvfst
       run: python build/fbcode_builder/getdeps.py --allow-system-packages build --src-dir=. mvfst 
+    - name: Debug
+      run: dir /a /s /b
     - name: Copy artifacts
       run: python build/fbcode_builder/getdeps.py --allow-system-packages fixup-dyn-deps --src-dir=. mvfst _artifacts/windows  --final-install-prefix /usr/local
     - uses: actions/upload-artifact@master
