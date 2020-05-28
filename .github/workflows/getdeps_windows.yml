@@ -92,13 +92,9 @@ jobs:
       run: python build/fbcode_builder/getdeps.py --allow-system-packages build --no-tests fizz
     - name: Build mvfst
       run: python build/fbcode_builder/getdeps.py --allow-system-packages build --src-dir=. mvfst 
-    - name: Debug
-      run: gci -r '../..' | select -exp FullName
-    - name: Copy artifacts
-      run: python build/fbcode_builder/getdeps.py --allow-system-packages fixup-dyn-deps --src-dir=. mvfst _artifacts/windows  --final-install-prefix /usr/local
     - uses: actions/upload-artifact@master
       with:
         name: mvfst
-        path: _artifacts
+        path: Z:/installed/mvfst/lib
     - name: Test mvfst
       run: python build/fbcode_builder/getdeps.py --allow-system-packages test --src-dir=. mvfst 
